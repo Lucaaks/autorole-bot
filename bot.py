@@ -1,3 +1,4 @@
+import os
 import discord
 
 intents = discord.Intents.default()
@@ -32,4 +33,4 @@ async def on_message(message):
             except discord.Forbidden:
                 print("Il bot non ha i permessi sufficienti per assegnare questo ruolo.")
 
-client.run ('')
+client.run os.environ['TOKEN']
