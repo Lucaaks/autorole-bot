@@ -33,4 +33,4 @@ async def on_message(message):
             except discord.Forbidden:
                 print("Il bot non ha i permessi sufficienti per assegnare questo ruolo.")
 
-client.run os.environ['TOKEN']
+client.run (os.environ['TOKEN'])
