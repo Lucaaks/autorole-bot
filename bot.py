@@ -28,7 +28,7 @@ intents.members = True
 
 client = discord.Client(intents=intents)
 
-TARGET_CHANNEL_ID = 143933171559661709
+TARGET_CHANNEL_ID = 1439333171559661709
 ROLE_ID = 1439331331489140856
 
 @client.event
