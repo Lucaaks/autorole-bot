@@ -1,26 +1,25 @@
 import os
-import discord
+from flask import Flask
 from threading import Thread
-from http.server import HTTPServer, BaseHTTPRequestHandler
+import discord
 
-# --- Server HTTP fittizio per soddisfare Render ---
-class SimpleHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b"Bot is running!")
+# --- SERVER WEB PER RENDER / UPTIMEROBOT ---
+app = Flask('')
 
-def run_web_server():
-    # Render assegna una porta tramite la variabile d'ambiente 'PORT', di default usiamo la 8080
+@app.route('/')
+def home():
+    return "Bot is active!"
+
+def run():
     port = int(os.environ.get("PORT", 8080))
-    server = HTTPServer(('0.0.0.0', port), SimpleHandler)
-    server.serve_forever()
+    app.run(host='0.0.0.0', port=port)
 
-# Avviamo il server web in un thread separato
-web_thread = Thread(target=run_web_server)
-web_thread.daemon = True
-web_thread.start()
-# --------------------------------------------------
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
+keep_alive()
+# ---------------------------------------------
 
 intents = discord.Intents.default()
 intents.message_content = True
